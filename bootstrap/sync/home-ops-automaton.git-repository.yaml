@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/gitrepository-source-v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: home-ops-automaton
+spec:
+  url: https://github.com/mirceanton/home-ops-automaton
+  ref: { branch: main }
+  interval: 10m0s
+  timeout: 3m
