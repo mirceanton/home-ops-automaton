@@ -59,3 +59,11 @@ patches:
     cluster:
       discovery:
         enabled: false
+
+  # Increase maxPods and disable serializeImagePulls
+  - |-
+    machine:
+      kubelet:
+        extraConfig:
+          maxPods: 200
+          serializeImagePulls: false
