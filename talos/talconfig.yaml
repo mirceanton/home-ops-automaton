@@ -67,3 +67,10 @@ patches:
         extraConfig:
           maxPods: 200
           serializeImagePulls: false
+
+  # Disable default API server admission plugins.
+  - |-
+    cluster:
+      apiServer:
+        admissionControl:
+          $$patch: delete
