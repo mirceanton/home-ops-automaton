@@ -40,7 +40,7 @@ nodes:
             - siderolabs/intel-ucode
 
     patches:
-      - |-  # Extra disks
+      - |- # Extra disks
         machine:
           disks:
             - device: /dev/nvme1n1
@@ -74,3 +74,49 @@ patches:
       apiServer:
         admissionControl:
           $$patch: delete
+
+  # # Configure container registry mirrors
+  - |-
+    machine:
+      registries:
+        mirrors:
+          docker.io:
+            skipFallback: true
+            endpoints: ["https://registry.nas.mgmt.h.mirceanton.com/docker.io"]
+            overridePath: true
+          registry-1.docker.io:
+            skipFallback: true
+            endpoints: ["https://registry.nas.mgmt.h.mirceanton.com/docker.io"]
+            overridePath: true
+          ghcr.io:
+            skipFallback: true
+            endpoints: ["https://registry.nas.mgmt.h.mirceanton.com/ghcr.io"]
+            overridePath: true
+          gcr.io:
+            skipFallback: true
+            endpoints: ["https://registry.nas.mgmt.h.mirceanton.com/gcr.io"]
+          quay.io:
+            skipFallback: true
+            endpoints: ["https://registry.nas.mgmt.h.mirceanton.com/quay.io"]
+          registry.k8s.io:
+            skipFallback: true
+            endpoints: ["https://registry.nas.mgmt.h.mirceanton.com/k8s.io"]
+
+  # Use images from internal registry
+  - |-
+    machine:
+      kubelet:
+        image: registry.nas.mgmt.h.mirceanton.com/ghcr.io/siderolabs/kubelet:v1.34.1
+    cluster:
+      apiServer:
+        image: registry.nas.mgmt.h.mirceanton.com/registry.k8s.io/kube-apiserver:v1.34.1
+      controllerManager:
+        image: registry.nas.mgmt.h.mirceanton.com/registry.k8s.io/kube-controller-manager:v1.34.1
+      scheduler:
+        image: registry.nas.mgmt.h.mirceanton.com/registry.k8s.io/kube-scheduler:v1.34.1
+      etcd:
+        image: registry.nas.mgmt.h.mirceanton.com/gcr.io/etcd-development/etcd:v3.6.5
+      proxy:
+        image: registry.nas.mgmt.h.mirceanton.com/registry.k8s.io/kube-proxy:v1.34.1
+      coreDNS:
+        image: registry.nas.mgmt.h.mirceanton.com/registry.k8s.io/coredns/coredns:v1.12.4
