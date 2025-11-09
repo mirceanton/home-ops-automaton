@@ -52,3 +52,10 @@ nodes:
                 type: bind
                 source: /var/mnt/data
                 options: [rbind, rshared, rw]
+
+patches:
+  # Disable cluster discovery. Not needed for single-node clusters;
+  - |-
+    cluster:
+      discovery:
+        enabled: false
