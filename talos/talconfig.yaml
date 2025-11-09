@@ -40,7 +40,7 @@ nodes:
             - siderolabs/intel-ucode
 
     patches:
-      - |-  # Extra disks
+      - |- # Extra disks
         machine:
           disks:
             - device: /dev/nvme1n1
@@ -74,3 +74,38 @@ patches:
       apiServer:
         admissionControl:
           $$patch: delete
+
+  # # Configure container registry mirrors
+  - |-
+    machine:
+      registries:
+        config:
+          ${registry_hostname}:
+            auth:
+              username: ${registry_username}
+              password: ${registry_password}
+        mirrors:
+          docker.io:
+            skipFallback: true
+            endpoints: ["https://${registry_hostname}/v2/docker.io/"]
+            overridePath: true
+          registry-1.docker.io:
+            skipFallback: true
+            endpoints: ["https://${registry_hostname}/v2/registry-1.docker.io/"]
+            overridePath: true
+          ghcr.io:
+            skipFallback: true
+            endpoints: ["https://${registry_hostname}/v2/ghcr.io/"]
+            overridePath: true
+          gcr.io:
+            skipFallback: true
+            endpoints: ["https://${registry_hostname}/v2/gcr.io/"]
+            overridePath: true
+          quay.io:
+            skipFallback: true
+            endpoints: ["https://${registry_hostname}/v2/quay.io/"]
+            overridePath: true
+          registry.k8s.io:
+            skipFallback: true
+            endpoints: ["https://${registry_hostname}/v2/registry.k8s.io/"]
+            overridePath: true

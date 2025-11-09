@@ -1,5 +1,6 @@
 # Talos Generated Configuration Files
 talsecret.yaml
+talenv.yaml
 clusterconfig/
 
 # Ignore Unencrypted Kubernetes Secrets

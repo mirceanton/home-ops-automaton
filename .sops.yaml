@@ -1,8 +1,8 @@
 ---
 creation_rules:
   # Talhelper files
-  - path_regex: .*\/(talsecret)(\.sops)?\.yaml
-    encrypted_regex: "^(id|secret|bootstraptoken|secretboxencryptionsecret|token|ca|crt|key)$"
+  - path_regex: .*\/(talsecret|talenv)(\.sops)?\.yaml
+    encrypted_regex: ".*"
     key_groups:
       - age:
           - age1d7fjm42t7d8r9g4glua85tkrf4txswk2hnc8s4pgr8nyupnenfhqmegklw
