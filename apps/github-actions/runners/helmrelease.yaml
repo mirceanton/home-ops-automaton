@@ -13,8 +13,6 @@ spec:
   values:
     githubConfigUrl: https://github.com/mirceanton
     githubConfigSecret: github-org-token
-    runnerGroup: *name
-    runnerScaleSetName: *name
     minRunners: 1
     maxRunners: 3
 
