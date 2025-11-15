@@ -5,23 +5,23 @@ SOPS_AGE_KEY_FILE = '{{config_root}}/age.key'
 # Kubectl + Plugins
 "aqua:kubectl" = "1.34.1"
 "aqua:fluxcd/flux2" = "2.7.3"
-"aqua:kustomize" = "5.8.0"
-"aqua:helm" = "3.19.0"
+"aqua:kustomize" = "5"
+"aqua:helm" = "4"
+"aqua:derailed/k9s" = "0"
 
 # Talos Stuff
 "aqua:talosctl" = "1.11.5"
 "aqua:talhelper" = "3.0.39"
 
 # Terraform Stuff
-opentofu = "v1.10.7"
-op = "2.32.0"
+terragrunt = "latest"
+opentofu = "1"
+op = "2"
 
 # Misc Tools
-"aqua:go-task/task" = "3.45.4"
-"aqua:getsops/sops" = "3.11.0"
-"aqua:FiloSottile/age" = "1.2.1"
-k9s = "latest"
-terragrunt = "latest"
+task = "3"
+sops = "3"
+age = "1"
 direnv = "latest"
 
 # Linters
