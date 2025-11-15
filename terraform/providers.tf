@@ -4,6 +4,10 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.86.0"
     }
+    talos = {
+      source  = "siderolabs/talos"
+      version = "0.9.0"
+    }
     onepassword = {
       source  = "1Password/onepassword"
       version = "2.2.0"

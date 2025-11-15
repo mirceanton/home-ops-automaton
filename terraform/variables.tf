@@ -1,3 +1,6 @@
+# =================================================================================================
+# Proxmox Variables
+# =================================================================================================
 variable "proxmox_api_url" {
 	description = "Base URL of the Proxmox API, e.g. https://pve.example.com:8006/"
 	type        = string
@@ -20,6 +23,9 @@ variable "proxmox_insecure" {
     default     = false
 }
 
+# =================================================================================================
+# 1Password Variables
+# =================================================================================================
 variable "op_service_account_token" {
     description = "1Password service account token for API access."
     type        = string
@@ -27,5 +33,23 @@ variable "op_service_account_token" {
 }
 variable "op_vault_name" {
     description = "Name of the 1Password vault to store credentials in."
+    type        = string
+}
+
+
+# =================================================================================================
+# Talos Template Variables
+# =================================================================================================
+variable "talos_version" {
+    description = "Version of Talos Linux to deploy (e.g. v1.2.3)."
+    type        = string
+}
+
+variable "proxmox_node_name" {
+	description = "Name of the Proxmox node that will host the Talos template."
+	type        = string
+}
+variable "proxmox_iso_datastore" {
+    description = "Datastore where the Talos ISO will be downloaded."
     type        = string
 }
