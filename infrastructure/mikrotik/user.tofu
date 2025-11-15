@@ -5,7 +5,7 @@ resource "random_password" "external_dns_password" { length = 32 }
 resource "routeros_system_user" "external-dns" {
   name     = "external-dns"
   group    = "full" #!FIXME: Adjust permissions as needed
-  comment = "Managed by Terraform"
+  comment  = "Managed by Terraform"
   password = random_password.external_dns_password.result
 }
 

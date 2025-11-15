@@ -5,5 +5,5 @@ include "root" {
 terraform { source = "." }
 
 inputs = {
-  op_vault_name      = "Automation"
+  op_vault_name = "Automation"
 }
