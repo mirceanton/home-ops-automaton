@@ -109,3 +109,7 @@ patches:
             skipFallback: true
             endpoints: ["https://${registry_hostname}/v2/registry.k8s.io/"]
             overridePath: true
+          oci.external-secrets.io:
+            skipFallback: true
+            endpoints: ["https://${registry_hostname}/v2/oci.external-secrets.io/"]
+            overridePath: true
