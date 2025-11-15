@@ -4,7 +4,7 @@
 # Fetch the Talos extension versions for the specified Talos version
 data "talos_image_factory_extensions_versions" "this" {
   talos_version = var.talos_version
-  filters = { names = [ "qemu-guest-agent" ] }
+  filters       = { names = ["qemu-guest-agent"] }
 }
 
 # Create a Talos image factory schematic with the specified extensions
@@ -31,15 +31,15 @@ data "talos_image_factory_urls" "this" {
 # Outputs
 output "schematic_id" {
   description = "Talos image factory schematic ID"
-  value = talos_image_factory_schematic.this.id
+  value       = talos_image_factory_schematic.this.id
 }
 output "installer_url" {
   description = "Talos installer URL"
-  value = data.talos_image_factory_urls.this.urls.installer
+  value       = data.talos_image_factory_urls.this.urls.installer
 }
 output "iso_url" {
   description = "Talos ISO URL"
-  value = data.talos_image_factory_urls.this.urls.iso
+  value       = data.talos_image_factory_urls.this.urls.iso
 }
 
 
