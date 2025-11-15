@@ -1,0 +1,23 @@
+terraform {
+  required_providers {
+    proxmox = {
+      source  = "bpg/proxmox"
+      version = "0.86.0"
+    }
+    talos = {
+      source  = "siderolabs/talos"
+      version = "0.9.0"
+    }
+    onepassword = {
+      source  = "1Password/onepassword"
+      version = "2.2.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.7.2"
+    }
+  }
+}
+
+provider "proxmox" {}
+provider "onepassword" {}
