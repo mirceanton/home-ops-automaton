@@ -12,7 +12,7 @@ spec:
 
   values:
     localpv-provisioner:
-      analytics: { enabled: false }
+      analytics: {enabled: false}
       localpv:
         image:
           registry: quay.io/
@@ -32,17 +32,17 @@ spec:
           enabled: false
           keep: false
 
-    preUpgradeHook: { enabled: false }
+    preUpgradeHook: {enabled: false}
 
-    zfs-localpv: { enabled: false }
-    lvm-localpv: { enabled: false }
-    mayastor: { enabled: false }
-    loki: { enabled: false }
-    alloy: { enabled: false }
-    minio: { enabled: false }
+    zfs-localpv: {enabled: false}
+    lvm-localpv: {enabled: false}
+    mayastor: {enabled: false}
+    loki: {enabled: false}
+    alloy: {enabled: false}
+    minio: {enabled: false}
     engines:
       local:
-        lvm: { enabled: false }
-        zfs: { enabled: false }
+        lvm: {enabled: false}
+        zfs: {enabled: false}
       replicated:
-        mayastor: { enabled: false }
+        mayastor: {enabled: false}
