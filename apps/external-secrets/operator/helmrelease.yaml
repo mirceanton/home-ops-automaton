@@ -19,13 +19,3 @@ spec:
       requests:
         cpu: 25m
         memory: 64Mi
-
-    image:
-      pullPolicy: Always
-    webhook:
-      image:
-        pullPolicy: Always
-    certController:
-      image:
-        pullPolicy: Always
-
