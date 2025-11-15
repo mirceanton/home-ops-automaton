@@ -7,7 +7,7 @@ metadata:
 spec:
   url: oci://registry.home.mirceanton.com/quay.io/jetstack/charts/cert-manager
   interval: 15m
-  ref: { tag: v1.19.1 }
+  ref: {tag: v1.19.1}
 
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
