@@ -1,0 +1,37 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "**/*.json5": "json5"
+  },
+
+  "material-icon-theme.files.associations": {
+    "*.sops.yaml": "lock",
+    "kubeconfig": "kubernetes",
+    "talosconfig": "kubernetes"
+  },
+  "material-icon-theme.folders.associations": {
+    // top level
+    "bootstrap": "seeders",
+    "talos": "linux",
+    "infrastructure": "server",
+
+    // subfolders
+    "clusterconfig": "cluster",
+    "flux": "pipe",
+    "sync": "update",
+
+    // kube namespaces
+    "cert-manager": "guard",
+    "github-actions": "github",
+    "default": "home",
+    "external-secrets": "secure",
+    "flux-system": "pipe",
+    "kube-system": "kubernetes",
+    "network": "connection",
+    "openebs-system": "base",
+  },
+
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
