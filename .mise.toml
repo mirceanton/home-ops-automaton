@@ -27,3 +27,4 @@ direnv = "latest"
 # Linters
 yamlfmt = "0"
 actionlint = "1"
+"npm:@commitlint/cli" = "latest"
