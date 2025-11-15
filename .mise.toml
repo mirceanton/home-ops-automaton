@@ -25,4 +25,5 @@ terragrunt = "latest"
 direnv = "latest"
 
 # Linters
-yamlfmt = "0.20"
+yamlfmt = "0"
+actionlint = "1"
