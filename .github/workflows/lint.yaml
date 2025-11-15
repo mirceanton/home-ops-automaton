@@ -8,7 +8,7 @@ on:
   push: {}
 
 jobs:
-  actionlint:
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,41 +17,5 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@be3be2260bc02bc3fbf94c5e2fed8b7964baf074 # v3.4.0
 
-      - name: Run actionlint
-        run: mise exec -- actionlint
-
-  yaml:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-      - name: Setup mise
-        uses: jdx/mise-action@be3be2260bc02bc3fbf94c5e2fed8b7964baf074 # v3.4.0
-
-      - name: Run yamlfmt
-        run: mise exec -- yamlfmt -lint **/*.yaml
-
-  tofu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-      - name: Setup mise
-        uses: jdx/mise-action@be3be2260bc02bc3fbf94c5e2fed8b7964baf074 # v3.4.0
-
-      - name: Run tofu fmt
-        run: mise exec -- tofu fmt -recursive -check
-
-  terragrunt:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-      - name: Setup mise
-        uses: jdx/mise-action@be3be2260bc02bc3fbf94c5e2fed8b7964baf074 # v3.4.0
-
-      - name: Run terragrunt fmt
-        run: mise exec -- terragrunt hcl format --check
+      - name: Run linters
+        run: task lint:check
