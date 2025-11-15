@@ -23,3 +23,7 @@ op = "2.32.0"
 k9s = "latest"
 terragrunt = "latest"
 direnv = "latest"
+
+# Linters
+yamlfmt = "0"
+actionlint = "1"
