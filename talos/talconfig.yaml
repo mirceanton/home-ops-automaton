@@ -10,106 +10,106 @@ talosVersion: v1.11.3
 kubernetesVersion: v1.34.1
 
 additionalApiServerCertSans: &san
-  - 10.0.0.15
-  - automaton.mgmt.h.mirceanton.com
+    - 10.0.0.15
+    - automaton.mgmt.h.mirceanton.com
 additionalMachineCertSans: *san
 
 allowSchedulingOnControlPlanes: true
 cniConfig:
-  name: flannel
+    name: flannel
 
 nodes:
-  - hostname: automaton
-    ipAddress: 10.0.0.15
-    controlPlane: true
-    installDisk: /dev/nvme0n1
+    - hostname: automaton
+      ipAddress: 10.0.0.15
+      controlPlane: true
+      installDisk: /dev/nvme0n1
 
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "70:85:c2:58:8d:31"
-        dhcp: true
-      - deviceSelector:
-          hardwareAddr: "24:2f:d0:7f:fa:1f"
-        dhcp: true
+      networkInterfaces:
+        - deviceSelector:
+            hardwareAddr: "70:85:c2:58:8d:31"
+          dhcp: true
+        - deviceSelector:
+            hardwareAddr: "24:2f:d0:7f:fa:1f"
+          dhcp: true
 
-    schematic:
-      customization:
-        systemExtensions:
-          officialExtensions:
-            - siderolabs/i915
-            - siderolabs/intel-ucode
+      schematic:
+        customization:
+            systemExtensions:
+                officialExtensions:
+                    - siderolabs/i915
+                    - siderolabs/intel-ucode
 
-    patches:
-      - |- # Extra disks
-        machine:
-          disks:
-            - device: /dev/nvme1n1
-              partitions:
-                - mountpoint: /var/mnt/data
-          kubelet:
-            extraMounts:
-              - destination: /var/mnt/data
-                type: bind
-                source: /var/mnt/data
-                options: [rbind, rshared, rw]
+      patches:
+        - |- # Extra disks
+          machine:
+            disks:
+              - device: /dev/nvme1n1
+                partitions:
+                  - mountpoint: /var/mnt/data
+            kubelet:
+              extraMounts:
+                - destination: /var/mnt/data
+                  type: bind
+                  source: /var/mnt/data
+                  options: [rbind, rshared, rw]
 
 patches:
-  # Disable cluster discovery. Not needed for single-node clusters;
-  - |-
-    cluster:
-      discovery:
-        enabled: false
+    # Disable cluster discovery. Not needed for single-node clusters;
+    - |-
+      cluster:
+        discovery:
+          enabled: false
 
-  # Increase maxPods and disable serializeImagePulls
-  - |-
-    machine:
-      kubelet:
-        extraConfig:
-          maxPods: 200
-          serializeImagePulls: false
+    # Increase maxPods and disable serializeImagePulls
+    - |-
+      machine:
+        kubelet:
+          extraConfig:
+            maxPods: 200
+            serializeImagePulls: false
 
-  # Disable default API server admission plugins.
-  - |-
-    cluster:
-      apiServer:
-        admissionControl:
-          $$patch: delete
+    # Disable default API server admission plugins.
+    - |-
+      cluster:
+        apiServer:
+          admissionControl:
+            $$patch: delete
 
-  # # Configure container registry mirrors
-  - |-
-    machine:
-      registries:
-        config:
-          ${registry_hostname}:
-            auth:
-              username: ${registry_username}
-              password: ${registry_password}
-        mirrors:
-          docker.io:
-            skipFallback: true
-            endpoints: ["https://${registry_hostname}/v2/docker.io/"]
-            overridePath: true
-          registry-1.docker.io:
-            skipFallback: true
-            endpoints: ["https://${registry_hostname}/v2/registry-1.docker.io/"]
-            overridePath: true
-          ghcr.io:
-            skipFallback: true
-            endpoints: ["https://${registry_hostname}/v2/ghcr.io/"]
-            overridePath: true
-          gcr.io:
-            skipFallback: true
-            endpoints: ["https://${registry_hostname}/v2/gcr.io/"]
-            overridePath: true
-          quay.io:
-            skipFallback: true
-            endpoints: ["https://${registry_hostname}/v2/quay.io/"]
-            overridePath: true
-          registry.k8s.io:
-            skipFallback: true
-            endpoints: ["https://${registry_hostname}/v2/registry.k8s.io/"]
-            overridePath: true
-          oci.external-secrets.io:
-            skipFallback: true
-            endpoints: ["https://${registry_hostname}/v2/oci.external-secrets.io/"]
-            overridePath: true
+    # # Configure container registry mirrors
+    - |-
+      machine:
+        registries:
+          config:
+            ${registry_hostname}:
+              auth:
+                username: ${registry_username}
+                password: ${registry_password}
+          mirrors:
+            docker.io:
+              skipFallback: true
+              endpoints: ["https://${registry_hostname}/v2/docker.io/"]
+              overridePath: true
+            registry-1.docker.io:
+              skipFallback: true
+              endpoints: ["https://${registry_hostname}/v2/registry-1.docker.io/"]
+              overridePath: true
+            ghcr.io:
+              skipFallback: true
+              endpoints: ["https://${registry_hostname}/v2/ghcr.io/"]
+              overridePath: true
+            gcr.io:
+              skipFallback: true
+              endpoints: ["https://${registry_hostname}/v2/gcr.io/"]
+              overridePath: true
+            quay.io:
+              skipFallback: true
+              endpoints: ["https://${registry_hostname}/v2/quay.io/"]
+              overridePath: true
+            registry.k8s.io:
+              skipFallback: true
+              endpoints: ["https://${registry_hostname}/v2/registry.k8s.io/"]
+              overridePath: true
+            oci.external-secrets.io:
+              skipFallback: true
+              endpoints: ["https://${registry_hostname}/v2/oci.external-secrets.io/"]
+              overridePath: true

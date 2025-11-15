@@ -3,12 +3,12 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: reloader
+    name: reloader
 spec:
-  url: oci://registry.home.mirceanton.com/ghcr.io/stakater/charts/reloader
-  interval: 15m
-  ref: {tag: 2.2.5}
+    url: oci://registry.home.mirceanton.com/ghcr.io/stakater/charts/reloader
+    interval: 15m
+    ref: {tag: 2.2.5}
 
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
+    layerSelector:
+        mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+        operation: copy

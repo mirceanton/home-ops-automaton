@@ -3,19 +3,19 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: external-secrets
-spec:
-  interval: 10m
-  chartRef:
-    kind: OCIRepository
     name: external-secrets
+spec:
+    interval: 10m
+    chartRef:
+        kind: OCIRepository
+        name: external-secrets
 
-  values:
-    installCRDs: true
-    resources:
-      limits:
-        cpu: 100m
-        memory: 128Mi
-      requests:
-        cpu: 25m
-        memory: 64Mi
+    values:
+        installCRDs: true
+        resources:
+            limits:
+                cpu: 100m
+                memory: 128Mi
+            requests:
+                cpu: 25m
+                memory: 64Mi

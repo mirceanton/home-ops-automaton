@@ -2,21 +2,21 @@
 version: '3'
 
 tasks:
-  default:
-    silent: true
-    cmd: task -l
+    default:
+        silent: true
+        cmd: task -l
 
-  sops:encrypt:
-    desc: Encrypt all sops files in this repository.
-    aliases: ['sops:enc', 'sops:e']
-    cmd: bash {{.ROOT_DIR}}/.scripts/sops-encrypt-all.sh
+    sops:encrypt:
+        desc: Encrypt all sops files in this repository.
+        aliases: ['sops:enc', 'sops:e']
+        cmd: bash {{.ROOT_DIR}}/.scripts/sops-encrypt-all.sh
 
-  sops:decrypt:
-    desc: Decrypt all sops files in this repository.
-    aliases: ['sops:dec', 'sops:d']
-    cmd: bash {{.ROOT_DIR}}/.scripts/sops-decrypt-all.sh {{.CLI_ARGS}}
+    sops:decrypt:
+        desc: Decrypt all sops files in this repository.
+        aliases: ['sops:dec', 'sops:d']
+        cmd: bash {{.ROOT_DIR}}/.scripts/sops-decrypt-all.sh {{.CLI_ARGS}}
 
-  lint:
-    desc: Run all linters.
-    cmds:
-      - yamlfmt **/*.yaml
+    lint:
+        desc: Run all linters.
+        cmds:
+            - yamlfmt **/*.yaml

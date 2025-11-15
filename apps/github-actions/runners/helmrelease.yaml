@@ -3,39 +3,39 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: infra-runners
+    name: infra-runners
 spec:
-  interval: 10m
-  chartRef:
-    kind: OCIRepository
-    name: gha-runner-scale-set
+    interval: 10m
+    chartRef:
+        kind: OCIRepository
+        name: gha-runner-scale-set
 
-  values:
-    githubConfigUrl: https://github.com/mirceanton
-    githubConfigSecret: github-org-token
-    minRunners: 1
-    maxRunners: 5
+    values:
+        githubConfigUrl: https://github.com/mirceanton
+        githubConfigSecret: github-org-token
+        minRunners: 1
+        maxRunners: 5
 
-    containerMode:
-      type: kubernetes
-      kubernetesModeWorkVolumeClaim:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: openebs-hostpath
-        resources:
-          requests:
-            storage: 25Gi
+        containerMode:
+            type: kubernetes
+            kubernetesModeWorkVolumeClaim:
+                accessModes: ["ReadWriteOnce"]
+                storageClassName: openebs-hostpath
+                resources:
+                    requests:
+                        storage: 25Gi
 
-    template:
-      spec:
-        containers:
-          - name: runner
-            image: ghcr.io/home-operations/actions-runner:2.329.0@sha256:1d26dc36431014527e0d920e7b84878dcf8fd69fb9639598de1af5ccf9210131
-            command:
-              - /home/runner/run.sh
-            env:
-              - name: ACTIONS_RUNNER_REQUIRE_JOB_CONTAINER
-                value: "false"
-              - name: NODE
-                valueFrom:
-                  fieldRef:
-                    fieldPath: status.hostIP
+        template:
+            spec:
+                containers:
+                    - name: runner
+                      image: ghcr.io/home-operations/actions-runner:2.329.0@sha256:1d26dc36431014527e0d920e7b84878dcf8fd69fb9639598de1af5ccf9210131
+                      command:
+                        - /home/runner/run.sh
+                      env:
+                        - name: ACTIONS_RUNNER_REQUIRE_JOB_CONTAINER
+                          value: "false"
+                        - name: NODE
+                          valueFrom:
+                            fieldRef:
+                                fieldPath: status.hostIP

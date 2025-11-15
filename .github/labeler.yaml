@@ -18,3 +18,5 @@ area/tofu/mikrotik:
 
 area/talos:
   - changed-files: [{any-glob-to-any-file: "talos/**"}]
+
+

@@ -3,12 +3,12 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: descheduler
+    name: descheduler
 spec:
-  url: oci://registry.home.mirceanton.com/ghcr.io/home-operations/charts-mirror/descheduler
-  interval: 15m
-  ref: {tag: 0.34.0}
+    url: oci://registry.home.mirceanton.com/ghcr.io/home-operations/charts-mirror/descheduler
+    interval: 15m
+    ref: {tag: 0.34.0}
 
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
+    layerSelector:
+        mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+        operation: copy

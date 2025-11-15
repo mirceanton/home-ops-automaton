@@ -3,12 +3,12 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: openebs
+    name: openebs
 spec:
-  url: oci://registry.home.mirceanton.com/ghcr.io/home-operations/charts-mirror/openebs
-  interval: 15m
-  ref: {tag: 4.3.3}
+    url: oci://registry.home.mirceanton.com/ghcr.io/home-operations/charts-mirror/openebs
+    interval: 15m
+    ref: {tag: 4.3.3}
 
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
+    layerSelector:
+        mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+        operation: copy

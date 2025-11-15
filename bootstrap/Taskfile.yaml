@@ -2,8 +2,8 @@
 version: '3'
 
 tasks:
-  bootstrap:
-    desc: Bootstrap Flux on the cluster.
-    cmds:
-      - kubectl apply -k ./flux
-      - kubectl apply -k ./sync
+    bootstrap:
+        desc: Bootstrap Flux on the cluster.
+        cmds:
+            - kubectl apply -k ./flux
+            - kubectl apply -k ./sync

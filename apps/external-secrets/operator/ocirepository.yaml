@@ -3,12 +3,12 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: external-secrets
+    name: external-secrets
 spec:
-  url: oci://registry.home.mirceanton.com/ghcr.io/external-secrets/charts/external-secrets
-  interval: 15m
-  ref: {tag: 1.0.0}
+    url: oci://registry.home.mirceanton.com/ghcr.io/external-secrets/charts/external-secrets
+    interval: 15m
+    ref: {tag: 1.0.0}
 
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
+    layerSelector:
+        mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+        operation: copy

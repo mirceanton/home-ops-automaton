@@ -5,4 +5,4 @@ kind: Kustomization
 namespace: cluster-api
 
 resources:
-  - ./namespace.yaml
+    - ./namespace.yaml

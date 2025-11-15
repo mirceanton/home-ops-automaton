@@ -5,6 +5,6 @@ kind: Kustomization
 namespace: github-actions
 
 resources:
-  - ./namespace.yaml
-  - ./controller.ks.yaml
-  - ./runners.ks.yaml
+    - ./namespace.yaml
+    - ./controller.ks.yaml
+    - ./runners.ks.yaml

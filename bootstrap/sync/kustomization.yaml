@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
-  - home-ops-automaton.git-repository.yaml
-  - apps.ks.yaml
+    - home-ops-automaton.git-repository.yaml
+    - apps.ks.yaml

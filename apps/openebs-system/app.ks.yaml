@@ -3,14 +3,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: openebs
+    name: openebs
 spec:
-  path: ./apps/openebs-system/app
-  sourceRef:
-    kind: GitRepository
-    name: home-ops-automaton
-    namespace: flux-system
+    path: ./apps/openebs-system/app
+    sourceRef:
+        kind: GitRepository
+        name: home-ops-automaton
+        namespace: flux-system
 
-  interval: 1h
-  prune: true
-  targetNamespace: openebs-system
+    interval: 1h
+    prune: true
+    targetNamespace: openebs-system
