@@ -1,0 +1,18 @@
+# Mikrotik Router Credentials
+export MIKROTIK_HOST=""
+export MIKROTIK_USER=""
+export MIKROTIK_PASSWORD=""
+export MIKROTIK_INSECURE=""
+
+# Proxmox VE Credentials
+export PROXMOX_VE_ENDPOINT=""
+export PROXMOX_VE_USERNAME=""
+export PROXMOX_VE_PASSWORD=""
+export PROXMOX_VE_INSECURE=""
+
+# 1Password Provider Credentials
+export OP_SERVICE_ACCOUNT_TOKEN=""
+
+# Backblaze B2 credentials (for state backend)
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
