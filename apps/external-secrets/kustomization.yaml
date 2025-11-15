@@ -6,3 +6,5 @@ namespace: external-secrets
 
 resources:
   - ./namespace.yaml
+  - ./operator.ks.yaml
+  - ./1password.ks.yaml
