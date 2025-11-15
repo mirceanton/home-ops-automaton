@@ -5,7 +5,7 @@ include "root" {
 terraform { source = "." }
 
 inputs = {
-  talos_version = "v1.11.3"
+  talos_version     = "v1.11.3"
   proxmox_node_name = "pve01"
-  op_vault_name = "Automation"
+  op_vault_name     = "Automation"
 }

@@ -50,10 +50,10 @@ resource "proxmox_virtual_environment_vm" "talos_template" {
   serial_device {}
 
   lifecycle {
-    ignore_changes = [ 
+    ignore_changes = [
       ipv4_addresses,
       ipv6_addresses,
       network_interface_names,
-     ]
+    ]
   }
 }
