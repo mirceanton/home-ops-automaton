@@ -1,3 +1,5 @@
+.envrc
+
 # Talos Generated Configuration Files
 talsecret.yaml
 talenv.yaml
@@ -17,8 +19,8 @@ clusterconfig/
 *.key
 
 # Terraform stuff
+.terragrunt-cache/
 .terraform/
-.terraform.lock.hcl
 *.tfstate
 *.tfstate.*
 *.auto.tfvars
