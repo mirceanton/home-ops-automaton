@@ -1,0 +1,33 @@
+---
+# GitHub
+- name: area/github
+  color: "24292f"
+  description: "Changes to GitHub workflows, actions, or configurations"
+
+# Kubernetes
+- name: area/kubernetes
+  color: "326ce5"
+  description: "Changes to Kubernetes applications and configurations"
+
+# Terragrunt
+- name: area/terragrunt
+  color: "844fba"
+  description: "Changes to Terragrunt configurations"
+
+# OpenTofu/Terraform
+- name: area/tofu
+  color: "7b42bc"
+  description: "Changes to OpenTofu/Terraform files"
+
+- name: area/tofu/proxmox
+  color: "e57000"
+  description: "Changes to Proxmox infrastructure"
+
+- name: area/tofu/mikrotik
+  color: "293239"
+  description: "Changes to MikroTik infrastructure"
+
+# Talos
+- name: area/talos
+  color: "ff6c37"
+  description: "Changes to Talos Linux configurations"
