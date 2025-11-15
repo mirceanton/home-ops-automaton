@@ -1,9 +1,7 @@
-resource "random_password" "capmox_user_password" {
-  length           = 32
-  special          = true
-  override_special = "_%@"
-}
-
+# ================================================================================================
+# PVE User
+# ================================================================================================
+resource "random_password" "capmox_user_password" { length = 32 }
 resource "proxmox_virtual_environment_user" "capmox" {
   user_id  = "capmox@pve"
   password = random_password.capmox_user_password.result
@@ -17,6 +15,10 @@ resource "proxmox_virtual_environment_user" "capmox" {
   }
 }
 
+
+# ===============================================================================================
+# PVE User Token
+# ===============================================================================================
 resource "proxmox_virtual_environment_user_token" "capmox_capi" {
   user_id               = proxmox_virtual_environment_user.capmox.user_id
   token_name            = "capi"
@@ -25,18 +27,10 @@ resource "proxmox_virtual_environment_user_token" "capmox_capi" {
 }
 
 
-output "capmox_capi_token_id" {
-  description = "Identifier for the generated Proxmox API token."
-  value       = proxmox_virtual_environment_user_token.capmox_capi.id
-}
-
-output "capmox_capi_token_value" {
-  description = "API token secret; capture and rotate via your secret manager after apply."
-  value       = proxmox_virtual_environment_user_token.capmox_capi.value
-  sensitive   = true
-}
-
-
+# =================================================================================================
+# 1Password Integration
+# =================================================================================================
+data "onepassword_vault" "vault" { name = var.op_vault_name }
 resource "onepassword_item" "capmox_credentials" {
   title    = "CapMox Credentials"
   vault    = data.onepassword_vault.vault.uuid
