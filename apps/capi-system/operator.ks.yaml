@@ -12,4 +12,9 @@ spec:
 
   interval: 1h
   prune: true
+  wait: true
   targetNamespace: capi-system
+
+  dependsOn:
+    - name: cert-manager
+      namespace: cert-manager
