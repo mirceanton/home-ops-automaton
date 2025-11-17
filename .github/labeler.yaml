@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/label-commenter-config.json
 area/github:
   - changed-files: [{any-glob-to-any-file: ".github/**/*"}]
 
