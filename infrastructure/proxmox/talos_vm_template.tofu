@@ -31,15 +31,10 @@ resource "proxmox_virtual_environment_vm" "talos_template" {
   scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = var.proxmox_template_datastore
-    size         = "4" # GB
+    size         = "20"
     interface    = "scsi0"
     file_format  = "raw"
-  }
-
-  # Talos ISO
-  cdrom {
-    file_id   = proxmox_virtual_environment_download_file.talos_iso.id
-    interface = "ide0"
+    file_id      = proxmox_virtual_environment_download_file.talos_disk_image.id
   }
 
   network_device {
