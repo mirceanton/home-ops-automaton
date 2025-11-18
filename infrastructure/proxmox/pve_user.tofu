@@ -34,23 +34,10 @@ data "onepassword_vault" "vault" { name = var.op_vault_name }
 resource "onepassword_item" "capmox_credentials" {
   title    = "CapMox Credentials"
   vault    = data.onepassword_vault.vault.uuid
+
   category = "login"
-
-  section {
-    label = "Credentials"
-
-    field {
-      label = "username"
-      type  = "STRING"
-      value = proxmox_virtual_environment_user.capmox.user_id
-    }
-
-    field {
-      label = "password"
-      type  = "CONCEALED"
-      value = random_password.capmox_user_password.result
-    }
-  }
+  username = proxmox_virtual_environment_user.capmox.user_id
+  password = random_password.capmox_user_password.result
 
   section {
     label = "Automation"
