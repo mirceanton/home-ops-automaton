@@ -41,7 +41,7 @@ resource "proxmox_virtual_environment_vm" "talos_template" {
     bridge = var.proxmox_template_network_bridge
   }
 
-  vga { type = "serial0" }
+  vga { type = "virtio" }
   serial_device {}
 
   lifecycle {
