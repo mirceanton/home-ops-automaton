@@ -32,8 +32,8 @@ resource "proxmox_virtual_environment_user_token" "capmox_capi" {
 # =================================================================================================
 data "onepassword_vault" "vault" { name = var.op_vault_name }
 resource "onepassword_item" "capmox_credentials" {
-  title    = "CapMox Credentials"
-  vault    = data.onepassword_vault.vault.uuid
+  title = "CapMox Credentials"
+  vault = data.onepassword_vault.vault.uuid
 
   category = "login"
   username = proxmox_virtual_environment_user.capmox.user_id

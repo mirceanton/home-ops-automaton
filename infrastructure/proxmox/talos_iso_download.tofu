@@ -54,7 +54,7 @@ resource "proxmox_virtual_environment_download_file" "talos_disk_image" {
   content_type = "iso"
   datastore_id = var.proxmox_iso_datastore
   node_name    = var.proxmox_node_name
-  url          = "${data.talos_image_factory_urls.this.urls.disk_image}"
+  url          = data.talos_image_factory_urls.this.urls.disk_image
   file_name    = "talos-${var.talos_version}-nocloud-amd64.img"
 
   decompression_algorithm = "zst"
