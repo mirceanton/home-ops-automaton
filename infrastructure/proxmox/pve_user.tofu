@@ -23,7 +23,7 @@ resource "proxmox_virtual_environment_user_token" "capmox_capi" {
   user_id               = proxmox_virtual_environment_user.capmox.user_id
   token_name            = "capi"
   comment               = "Managed by Terraform - Cluster API automation token"
-  privileges_separation = true
+  privileges_separation = false
 }
 
 
