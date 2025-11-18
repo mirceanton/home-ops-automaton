@@ -56,9 +56,27 @@ resource "onepassword_item" "capmox_credentials" {
     label = "Automation"
 
     field {
-      label = "api token"
+      label = "proxmox url"
+      type  = "STRING"
+      value = var.proxmox_endpoint
+    }
+
+    field {
+      label = "token name"
+      type  = "STRING"
+      value = proxmox_virtual_environment_user_token.capmox_capi.token_name
+    }
+
+    field {
+      label = "api token full"
       type  = "CONCEALED"
       value = proxmox_virtual_environment_user_token.capmox_capi.value
+    }
+
+    field {
+      label = "api token secret"
+      type  = "CONCEALED"
+      value = split("=", proxmox_virtual_environment_user_token.capmox_capi.value)[1]
     }
   }
 
