@@ -1,5 +1,5 @@
 # =================================================================================================
-# Generate Talos ISO with extensions
+# Generate Talos Image with extensions
 # =================================================================================================
 # Fetch the Talos extension versions for the specified Talos version
 data "talos_image_factory_extensions_versions" "this" {
@@ -41,21 +41,27 @@ output "iso_url" {
   description = "Talos ISO URL"
   value       = data.talos_image_factory_urls.this.urls.iso
 }
+output "disk_image_url" {
+  description = "Talos disk image URL"
+  value       = data.talos_image_factory_urls.this.urls.disk_image
+}
 
 
 # =================================================================================================
-# Download Talos ISO to Proxmox
+# Download Talos disk image to Proxmox
 # =================================================================================================
-resource "proxmox_virtual_environment_download_file" "talos_iso" {
+resource "proxmox_virtual_environment_download_file" "talos_disk_image" {
   content_type = "iso"
   datastore_id = var.proxmox_iso_datastore
   node_name    = var.proxmox_node_name
-  url          = data.talos_image_factory_urls.this.urls.iso
-  file_name    = "talos-${var.talos_version}-nocloud-amd64.iso"
+  url          = "${data.talos_image_factory_urls.this.urls.disk_image}"
+  file_name    = "talos-${var.talos_version}-nocloud-amd64.img"
+
+  decompression_algorithm = "zst"
 }
 
 # Outputs
-output "talos_iso_id" {
-  description = "Proxmox file ID for the Talos ISO"
-  value       = proxmox_virtual_environment_download_file.talos_iso.id
+output "talos_disk_image_id" {
+  description = "Proxmox file ID for the Talos disk image"
+  value       = proxmox_virtual_environment_download_file.talos_disk_image.id
 }
