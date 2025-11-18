@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_user" "capmox" {
   acl {
     path      = "/"
     propagate = true
-    role_id   = "PVEVMAdmin"
+    role_id   = "Administrator"
   }
 }
 
