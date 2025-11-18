@@ -4,6 +4,8 @@ kind: ProxmoxCluster
 metadata:
   name: home-ops
 spec:
+  allowedNodes: [pve01, pve02, pve03]
+
   schedulerHints:
     memoryAdjustment: 0
 
