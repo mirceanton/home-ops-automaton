@@ -4,9 +4,10 @@ kind: TalosControlPlane
 metadata:
   name: home-ops
 spec:
-  version: v1.34.1
+  version: v1.34.1 # TODO: renovate annotation
   replicas: 3
 
+  # TODO: move machine template to capi-system?
   infrastructureTemplate:
     kind: ProxmoxMachineTemplate
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
