@@ -10,7 +10,7 @@ spec:
     name: cluster-api-operator
 
   values:
-    replicaCount: 1 #! TODO: Set to 2 or more when adding more nodes
+    replicaCount: 2
     leaderElection:
       enabled: true #! Required for more than 1 replica
     logLevel: 2
