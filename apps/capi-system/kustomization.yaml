@@ -6,3 +6,4 @@ namespace: capi-system
 resources:
   - ./namespace.yaml
   - ./operator.ks.yaml
+  - ./providers.ks.yaml
