@@ -4,4 +4,5 @@ kind: IPAMProvider
 metadata:
   name: in-cluster
 spec:
+  # renovate: datasource=github-releases depName=kubernetes-sigs/cluster-api-ipam-provider-in-cluster
   version: v1.0.3

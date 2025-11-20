@@ -4,4 +4,5 @@ kind: ControlPlaneProvider
 metadata:
   name: talos
 spec:
+  # renovate: datasource=github-releases depName=siderolabs/cluster-api-control-plane-provider-talos
   version: v0.5.11

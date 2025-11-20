@@ -5,4 +5,5 @@ metadata:
   name: talos
   namespace: capi-system
 spec:
+  # renovate: datasource=github-releases depName=siderolabs/cluster-api-bootstrap-provider-talos
   version: v0.6.10
