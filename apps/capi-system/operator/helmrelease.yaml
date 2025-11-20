@@ -15,16 +15,16 @@ spec:
         name: cluster-api-operator
 
   values:
-    replicaCount: 1
-    leaderElection: {enabled: true}
-
+    replicaCount: 1 #! TODO: Set to 2 or more when adding more nodes
+    leaderElection:
+      enabled: true #! Required for more than 1 replica
     logLevel: 2
 
     resources:
       manager:
-        limits:
-          cpu: 500m
-          memory: 512Mi
         requests:
           cpu: 100m
           memory: 128Mi
+        limits:
+          cpu: 250m
+          memory: 256Mi
