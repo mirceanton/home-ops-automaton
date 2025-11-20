@@ -5,4 +5,4 @@ namespace: capi-cluster-home-ops
 
 resources:
   - ./namespace.yaml
-  # - ./cluster.ks.yaml
+  - ./cluster.ks.yaml
