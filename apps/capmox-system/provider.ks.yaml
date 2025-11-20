@@ -2,9 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: capi-provider-talos-controlplane
+  name: capi-provider-proxmox-infra
 spec:
-  path: ./apps/capct-system/provider
+  path: ./apps/capmox-system/provider
   sourceRef:
     kind: GitRepository
     name: home-ops-automaton
@@ -13,7 +13,7 @@ spec:
   interval: 1h
   prune: true
   wait: true
-  targetNamespace: capct-system
+  targetNamespace: capmox-system
 
   dependsOn:
     - name: capi-operator
