@@ -16,5 +16,9 @@ spec:
   targetNamespace: capi-cluster-home-ops
 
   dependsOn:
-    - name: capi-providers
-      namespace: capi-system
+    - name: capi-provider-proxmox
+      namespace: capi-provider-proxmox
+    - name: capi-provider-talos
+      namespace: capi-provider-talos
+    - name: capi-provider-helm
+      namespace: capi-provider-helm
