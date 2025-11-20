@@ -7,6 +7,7 @@ resource "proxmox_virtual_environment_vm" "talos_template" {
   tags        = ["talos-${var.talos_version}", "template", "capi"]
   template    = true
   machine     = "q35"
+  on_boot     = false
 
   operating_system { type = "l26" }
   agent {
