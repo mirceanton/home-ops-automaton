@@ -4,7 +4,7 @@ kind: Kustomization
 metadata:
   name: capi-providers-core
 spec:
-  path: ./apps/capi-system/provider
+  path: ./apps/capi-system/providers
   sourceRef:
     kind: GitRepository
     name: home-ops-automaton
