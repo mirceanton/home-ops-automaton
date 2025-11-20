@@ -1,7 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: capi-cluster-home-ops
+namespace: cluster-home-ops
 
 resources:
   - ./namespace.yaml
