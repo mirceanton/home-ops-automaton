@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: capi-provider-talos-controlplane
+  name: capi-provider-talos
 spec:
   path: ./apps/capi-provider-talos/provider
   sourceRef:
