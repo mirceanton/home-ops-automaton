@@ -1,0 +1,49 @@
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: ProxmoxMachineTemplate
+metadata:
+  name: home-ops-workers
+spec:
+  template:
+    spec:
+      # =========================================
+      # Controller Settings
+      # =========================================
+      checks:
+        skipCloudInitStatus: true
+        skipQemuGuestAgen: true
+      metadataSettings:
+        providerIDInjection: true
+
+      # =========================================
+      # Source VM Template Settings
+      # =========================================
+      sourceNode: pve01 #? Proxmox node where the template VM is located
+      templateID: 9000 #? Proxmox VM ID of the base template
+      full: true #? whether to use full clone or linked clone
+
+      # =========================================
+      # Target VM Settings
+      # =========================================
+      pool: home-ops
+      vmIDRange:
+        start: 2000
+        end: 2009
+
+      # =========================================
+      # Target VM Specs
+      # =========================================
+      numCores: 4
+      memoryMiB: 8192
+
+      format: qcow2 #? disk format: qcow2, raw or vmdk
+      storage: ceph-rbd #? Proxmox storage to use for the VM disks
+      disks:
+        bootVolume:
+          disk: scsi0
+          sizeGb: 20
+
+      network:
+        default:
+          bridge: vmbr0
+          model: virtio
