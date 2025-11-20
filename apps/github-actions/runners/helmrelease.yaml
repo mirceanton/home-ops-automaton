@@ -26,6 +26,22 @@ spec:
           requests:
             storage: 25Gi
 
+    # listenerTemplate is the PodSpec for each listener Pod
+    # For reference: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec
+    listenerTemplate:
+      spec:
+        containers:
+        - name: listener
+          securityContext:
+            runAsUser: 1000
+          resources:
+            requests:
+              cpu: 20m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Gi
+
     template:
       spec:
         containers:
