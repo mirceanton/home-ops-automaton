@@ -11,11 +11,130 @@ spec:
     name: external-secrets
 
   values:
+    # =============================================================================================
+    # Component - Main App
+    # =============================================================================================
     installCRDs: true
+    leaderElect: true #! Required for more than 1 replica
+    concurrent: 8
+    log: {level: info}
+
+    # ====================== Scaling and Scheduling ======================
+    replicaCount: 1 #! TODO: Set to 2 or more when adding more nodes
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        #! FIXME Should be DoNotSchedule but single node clusters can't satisfy that
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: external-secrets
+            app.kubernetes.io/instance: external-secrets
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 1
+
+    # ======================= Resource Allocations =======================
     resources:
-      limits:
-        cpu: 100m
-        memory: 256Mi
       requests:
         cpu: 25m
         memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 256Mi
+
+    # ============================= Security =============================
+    podSecurityContext: {fsGroup: 1000}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+
+    # =============================================================================================
+    # Component - Cert Controller
+    # =============================================================================================
+    certController:
+      create: true
+
+      # ====================== Scaling and Scheduling ======================
+      replicaCount: 1 #! TODO: Set to 2 or more when adding more nodes
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          #! FIXME Should be DoNotSchedule but single node clusters can't satisfy that
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: external-secrets-cert-controller
+              app.kubernetes.io/instance: external-secrets
+      podDisruptionBudget:
+        enabled: true
+        minAvailable: 1
+
+      # ======================= Resource Allocations =======================
+      resources:
+        requests:
+          cpu: 25m
+          memory: 128Mi
+        limits:
+          cpu: 100m
+          memory: 256Mi
+
+      # ============================= Security =============================
+      podSecurityContext: {fsGroup: 1000}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
+
+    # =============================================================================================
+    # Component - Webhook
+    # =============================================================================================
+    webhook:
+      create: true
+
+      # ====================== Scaling and Scheduling ======================
+      replicaCount: 1 #! TODO: Set to 2 or more when adding more nodes
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          #! FIXME Should be DoNotSchedule but single node clusters can't satisfy that
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: external-secrets-webhook
+              app.kubernetes.io/instance: external-secrets
+      podDisruptionBudget:
+        enabled: true
+        minAvailable: 1
+
+      # ======================= Resource Allocations =======================
+      resources:
+        requests:
+          cpu: 25m
+          memory: 64Mi
+        limits:
+          cpu: 100m
+          memory: 128Mi
+
+      # ============================= Security =============================
+      podSecurityContext: {fsGroup: 1000}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
