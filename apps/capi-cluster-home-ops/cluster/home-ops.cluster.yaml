@@ -7,6 +7,10 @@ spec:
   allowedNodes: [pve01, pve02, pve03]
   schedulerHints: {memoryAdjustment: 100}
 
+  controlPlaneEndpoint:
+    host: 10.0.0.30 #! must match the Talos VIP IP
+    port: 6443
+
   dnsServers: ["10.0.0.1"]
   ipv4Config:
     gateway: 10.0.0.1
