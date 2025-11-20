@@ -1,8 +1,0 @@
----
-apiVersion: operator.cluster.x-k8s.io/v1alpha2
-kind: AddonProvider
-metadata:
-  name: helm
-spec:
-  # renovate: datasource=github-releases depName=kubernetes-sigs/cluster-api-addon-provider-helm
-  version: v0.4.2

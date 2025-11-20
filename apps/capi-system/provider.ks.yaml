@@ -2,9 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: capi-provider-ipam-in-cluster
+  name: capi-providers-core
 spec:
-  path: ./apps/caip-system/provider
+  path: ./apps/capi-system/provider
   sourceRef:
     kind: GitRepository
     name: home-ops-automaton
@@ -13,7 +13,7 @@ spec:
   interval: 1h
   prune: true
   wait: true
-  targetNamespace: caip-system
+  targetNamespace: capi-system
 
   dependsOn:
     - name: capi-operator

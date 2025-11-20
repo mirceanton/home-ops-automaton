@@ -1,8 +1,0 @@
----
-apiVersion: operator.cluster.x-k8s.io/v1alpha2
-kind: ControlPlaneProvider
-metadata:
-  name: talos
-spec:
-  # renovate: datasource=github-releases depName=siderolabs/cluster-api-control-plane-provider-talos
-  version: v0.5.11
