@@ -7,6 +7,7 @@ spec:
   clusterName: home-ops
   replicas: 2
 
+  selector: {matchLabels: null} #? Required but ignored
   template:
     spec:
       clusterName: home-ops
