@@ -8,7 +8,6 @@ spec:
   schedulerHints: {memoryAdjustment: 100}
 
   dnsServers: ["10.0.0.1"]
-  ipv6Config: {}
   ipv4Config:
     gateway: 10.0.0.1
     prefix: 24
