@@ -5,4 +5,4 @@ namespace: capbt-system
 
 resources:
   - ./namespace.yaml
-  - ./providers.ks.yaml
+  - ./provider.ks.yaml
