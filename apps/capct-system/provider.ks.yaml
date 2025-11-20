@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: capi-provider-talos-controlplane
+spec:
+  path: ./apps/capct-system/provider
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-automaton
+    namespace: flux-system
+
+  interval: 1h
+  prune: true
+  wait: true
+  targetNamespace: capct-system
+
+  dependsOn:
+    - name: capi-operator
+      namespace: capi-system
