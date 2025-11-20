@@ -4,15 +4,10 @@ kind: HelmRelease
 metadata:
   name: capi-operator
 spec:
-  interval: 10m0s
-  chart:
-    spec:
-      chart: cluster-api-operator
-      version: 0.24.0
-      interval: 5m0s
-      sourceRef:
-        kind: HelmRepository
-        name: cluster-api-operator
+  interval: 10m
+  chartRef:
+    kind: OCIRepository
+    name: cluster-api-operator
 
   values:
     replicaCount: 1 #! TODO: Set to 2 or more when adding more nodes
