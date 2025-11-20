@@ -1,0 +1,19 @@
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
+kind: TalosConfigTemplate
+metadata:
+  name: talosconfig-workers
+spec:
+  template:
+    spec:
+      generateType: worker
+
+      # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+      talosVersion: v1.11.3
+
+      configPatches:
+        # Configure cloud provider for Talos CCM
+        - op: add
+          path: /machine/kubelet/extraArgs
+          value:
+            cloud-provider: external
