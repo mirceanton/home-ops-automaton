@@ -11,7 +11,11 @@ spec:
     name: descheduler
 
   values:
-    kind: Deployment
+    # =========================== App Settings ===========================
+    kind: Deployment # CronJob or Deployment
+    deschedulingInterval: 5m #! Required when running as a Deployment
+    leaderElection: {enabled: true} #! Required for more than 1 replica
+
     deschedulerPolicyAPIVersion: descheduler/v1alpha2
     deschedulerPolicy:
       metricsProviders:
@@ -66,3 +70,39 @@ spec:
                 - RemovePodsViolatingInterPodAntiAffinity
                 - RemovePodsViolatingNodeAffinity
                 - RemovePodsViolatingNodeTaints
+
+    # ====================== Scaling and Scheduling ======================
+    replicas: 1 #! TODO: Set to 2 or more when adding more nodes
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        #! FIXME Should be DoNotSchedule but single node clusters can't satisfy that
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: descheduler
+            app.kubernetes.io/instance: descheduler
+    #? PDB not supported for Descheduler Chart
+    # podDisruptionBudget:
+    #   enabled: true
+    #   minAvailable: 1
+
+    # ======================= Resource Allocations =======================
+    resources:
+      requests:
+        cpu: 25m
+        memory: 128Mi
+      limits:
+        cpu: 100m
+        memory: 256Mi
+
+    # ============================= Security =============================
+    podSecurityContext: {fsGroup: 1000}
+    securityContext:
+      runAsUser: 1000
+      privileged: false
+      runAsNonRoot: true
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
