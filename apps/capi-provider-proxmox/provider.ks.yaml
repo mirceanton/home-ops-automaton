@@ -17,4 +17,4 @@ spec:
 
   dependsOn:
     - name: capi-operator
-      namespace: capi-system
+      namespace: capi-operator
