@@ -10,6 +10,35 @@ spec:
     name: cluster-api-operator
 
   values:
+    core:
+      cluster-api:
+        # renovate: datasource=github-releases depName=kubernetes-sigs/cluster-api
+        version: v1.11.3
+    bootstrap:
+      talos:
+        version:
+          # renovate: datasource=github-releases depName=siderolabs/cluster-api-bootstrap-provider-talos
+          version: v0.6.10
+    controlplane:
+      talos:
+        version:
+          # renovate: datasource=github-releases depName=siderolabs/cluster-api-control-plane-provider-talos
+          version: v0.5.11
+    infrastructure:
+      proxmox:
+        # renovate: datasource=github-releases depName=ionos-cloud/cluster-api-provider-proxmox
+        version: v0.7.5
+        configSecret:
+          name: proxmox-credentials
+    addon:
+      helm:
+        # renovate: datasource=github-releases depName=kubernetes-sigs/cluster-api-addon-provider-helm
+        version: v0.4.2
+    ipam:
+      in-cluster:
+        # renovate: datasource=github-releases depName=kubernetes-sigs/cluster-api-ipam-provider-in-cluster
+        version: v1.0.3
+
     replicaCount: 2
     leaderElection:
       enabled: true #! Required for more than 1 replica
