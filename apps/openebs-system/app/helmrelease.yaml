@@ -12,24 +12,31 @@ spec:
 
   values:
     localpv-provisioner:
-      analytics: {enabled: false}
-
       localpv:
         basePath: &hostPath /var/mnt/data
-        requests:
-          cpu: 50m
-          memory: 75Mi
-        limits:
-          cpu: 100m
-          memory: 150Mi
+        enableLeaderElection: true #! Required for more than 1 replica
+        replicas: 1 #! TODO: Set to 2 or more when adding more nodes
 
+        # ===================== Resource Allocations =====================
+        requests:
+          cpu: 20m
+          memory: 32Mi
+        limits:
+          cpu: 50m
+          memory: 128Mi
+
+      # ========================== StorageClass ==========================
       hostpathClass:
         enabled: true
         name: openebs-hostpath
         reclaimPolicy: Delete
-        isDefaultClass: false
+        isDefaultClass: true
         basePath: *hostPath
 
+    # ====================================================================
+    # ====================== Disable EVERYTHING Else =====================
+    # ====================================================================
+    analytics: {enabled: false}
     alloy: {enabled: false}
     loki: {enabled: false}
     engines:
