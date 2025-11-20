@@ -15,10 +15,11 @@ spec:
         name: cluster-api-operator
 
   values:
-    # CAPI operator deployment options
-    logLevel: 2
     replicaCount: 1
-    leaderElection: {enabled: false} #? not needed with single replica?
+    leaderElection: {enabled: true}
+
+    logLevel: 2
+
     resources:
       manager:
         limits:
@@ -27,4 +28,3 @@ spec:
         requests:
           cpu: 100m
           memory: 128Mi
-
