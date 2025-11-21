@@ -10,6 +10,7 @@ spec:
       helm-apps.home.mirceanton.com/flux-bootstrap: "enabled"
 
   # Helm Install Options
+  reconcileStrategy: Continuous
   options:
     install:
       createNamespace: true
@@ -17,7 +18,7 @@ spec:
 
   # Helm Release Info
   releaseName: flux-operator
-  releaseNamespace: flux-system
+  namespace: flux-system
 
   # Helm Chart Source
   repoURL: oci://registry.home.mirceanton.com/ghcr.io/controlplaneio-fluxcd/charts
@@ -26,7 +27,7 @@ spec:
   # renovate: datasource=docker registry=ghcr.io/controlplaneio-fluxcd/charts
   version: v0.33.0
 
-  valuesTemplate:
+  valuesTemplate: |-
     instance:
       distribution:
         artifact: oci://registry.home.mirceanton.com/ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.33.0
