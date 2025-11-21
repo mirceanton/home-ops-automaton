@@ -12,15 +12,15 @@ spec:
 
   deployment:
     replicas: 1 #! TODO: Set to 2 or more when adding more nodes
-    affinity:
-      podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-                - key: cluster.x-k8s.io/provider
-                  operator: In
-                  values: ["infrastructure-proxmox"]
-            topologyKey: kubernetes.io/hostname
+    # affinity:
+    #   podAntiAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       - labelSelector:
+    #           matchExpressions:
+    #             - key: cluster.x-k8s.io/provider
+    #               operator: In
+    #               values: ["infrastructure-proxmox"]
+    #         topologyKey: kubernetes.io/hostname
 
     containers:
       - name: manager
