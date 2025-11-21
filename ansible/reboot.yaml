@@ -1,0 +1,11 @@
+---
+- name: Reboot all PVE nodes
+  hosts: pve
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Reboot node
+      ansible.builtin.reboot:
+        reboot_timeout: 600
+

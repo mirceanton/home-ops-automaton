@@ -1,0 +1,11 @@
+---
+- name: Shutdown all PVE nodes
+  hosts: pve
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Shutdown node
+      ansible.builtin.command: /sbin/shutdown -h now
+      changed_when: true
+
