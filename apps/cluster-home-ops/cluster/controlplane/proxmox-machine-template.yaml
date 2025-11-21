@@ -27,20 +27,20 @@ spec:
       # =========================================
       vmIDRange:
         start: 2000
-        end: 2009
+        end: 2005
 
       # =========================================
       # Target VM Specs
       # =========================================
-      numCores: 4
-      memoryMiB: 8192
+      numCores: 2
+      memoryMiB: 4096
 
       format: qcow2 #? disk format: qcow2, raw or vmdk
       storage: ceph-rbd #? Proxmox storage to use for the VM disks
       disks:
         bootVolume:
           disk: scsi0
-          sizeGb: 100
+          sizeGb: 64
 
       network:
         default:
