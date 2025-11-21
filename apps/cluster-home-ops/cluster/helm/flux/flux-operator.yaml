@@ -22,7 +22,7 @@ spec:
 
   # Helm Chart Source
   repoURL: oci://ghcr.io/controlplaneio-fluxcd/charts/
-  version: v0.33.0
+  version: 0.33.0
   chartName: flux-operator
 
   valuesTemplate: ""
