@@ -21,6 +21,9 @@ spec:
 
     containers:
       - name: manager
+        env:
+          - name: WATCH_NAMESPACE
+            value: ""
         resources:
           requests:
             cpu: 20m
