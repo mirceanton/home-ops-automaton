@@ -27,7 +27,7 @@ metadata:
   annotations:
     # Sync configuration
     flux.home.mirceanton.com/sync-url: "https://github.com/mirceanton/home-ops"
-    flux.home.mirceanton.com/sync-ref: "main"
+    flux.home.mirceanton.com/sync-ref: "refs/heads/main"
     flux.home.mirceanton.com/sync-path: "apps/"
     flux.home.mirceanton.com/sync-interval: "10m"
 
