@@ -18,3 +18,13 @@ spec:
   dependsOn:
     - name: capi-operator
       namespace: capi-operator
+
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: capi-controller-manager
+      namespace: capi-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: capi-ipam-in-cluster-controller-manager
+      namespace: capi-system

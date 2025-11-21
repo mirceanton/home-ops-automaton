@@ -18,3 +18,13 @@ spec:
   dependsOn:
     - name: capi-operator
       namespace: capi-operator
+
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cabpt-controller-manager
+      namespace: capi-provider-talos
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cacppt-controller-manager
+      namespace: capi-provider-talos

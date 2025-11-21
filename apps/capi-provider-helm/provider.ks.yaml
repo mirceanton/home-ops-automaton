@@ -18,3 +18,9 @@ spec:
   dependsOn:
     - name: capi-operator
       namespace: capi-operator
+
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: caaph-controller-manager
+      namespace: capi-provider-helm
