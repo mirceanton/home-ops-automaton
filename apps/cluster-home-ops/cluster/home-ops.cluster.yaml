@@ -22,8 +22,16 @@ apiVersion: cluster.x-k8s.io/v1beta2
 kind: Cluster
 metadata:
   name: home-ops
+  labels:
+    helm-apps.home.mirceanton.com/flux-bootstrap: "enabled"
+  annotations:
+    # Sync configuration
+    flux.home.mirceanton.com/sync-url: "https://github.com/mirceanton/home-ops"
+    flux.home.mirceanton.com/sync-ref: "main"
+    flux.home.mirceanton.com/sync-path: "apps/"
+    flux.home.mirceanton.com/sync-interval: "10m"
+
 spec:
-  paused: false # set to true to pause reconciliation
   controlPlaneEndpoint:
     host: 10.0.0.30 #! must match the Talos VIP IP
     port: 6443
