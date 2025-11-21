@@ -1,0 +1,31 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: capi-provider-helm
+spec:
+  path: ./apps/capi-provider-helm/provider
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-automaton
+    namespace: flux-system
+
+  interval: 1h
+  prune: true
+  wait: true
+  targetNamespace: capi-provider-helm
+
+  dependsOn:
+    - name: capi-operator
+      namespace: capi-operator
+
+  healthChecks:
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: AddonProvider
+      name: helm
+      namespace: capi-provider-helm
+  healthCheckExprs:
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: AddonProvider
+      current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+      inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False')

@@ -1,0 +1,28 @@
+---
+apiVersion: cluster.x-k8s.io/v1beta2
+kind: MachineDeployment
+metadata:
+  name: home-ops-workers
+spec:
+  clusterName: home-ops
+  replicas: 2
+
+  selector: {matchLabels: null} #? Required but ignored
+  template:
+    spec:
+      clusterName: home-ops
+      minReadySeconds: 5
+
+      # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+      version: v1.34.1
+
+      bootstrap:
+        configRef:
+          apiGroup: bootstrap.cluster.x-k8s.io
+          kind: TalosConfigTemplate
+          name: talosconfig-workers
+
+      infrastructureRef:
+        apiGroup: infrastructure.cluster.x-k8s.io
+        kind: ProxmoxMachineTemplate
+        name: home-ops-workers

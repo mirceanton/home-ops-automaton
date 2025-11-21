@@ -1,0 +1,25 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: capi-operator
+spec:
+  interval: 10m
+  chartRef:
+    kind: OCIRepository
+    name: cluster-api-operator
+
+  values:
+    replicaCount: 1 #! TODO: Set to 2 or more when adding more nodes
+    leaderElection:
+      enabled: true #! Required for more than 1 replica
+    logLevel: 2
+
+    resources:
+      manager:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 250m
+          memory: 256Mi

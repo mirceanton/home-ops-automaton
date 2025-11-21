@@ -1,0 +1,29 @@
+---
+apiVersion: operator.cluster.x-k8s.io/v1alpha2
+kind: ControlPlaneProvider
+metadata:
+  name: talos
+spec:
+  # renovate: datasource=github-releases depName=siderolabs/cluster-api-control-plane-provider-talos
+  version: v0.5.11
+
+  deployment:
+    replicas: 1 #! TODO: Set to 2 or more when adding more nodes
+    # affinity:
+    #   podAntiAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       - labelSelector:
+    #           matchExpressions:
+    #             - key: cluster.x-k8s.io/provider
+    #               operator: In
+    #               values: ["control-plane-talos"]
+    #         topologyKey: kubernetes.io/hostname
+
+    containers:
+      - name: manager
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+          limits:
+            memory: 256Mi

@@ -1,0 +1,63 @@
+---
+apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
+kind: TalosControlPlane
+metadata:
+  name: home-ops
+spec:
+  replicas: 3
+
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+  version: v1.34.1
+
+  infrastructureTemplate:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: ProxmoxMachineTemplate
+    name: home-ops-controlplane
+    namespace: cluster-home-ops
+
+  controlPlaneConfig:
+    controlplane:
+      generateType: controlplane
+
+      # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+      talosVersion: v1.11.3
+
+      configPatches:
+        # Enable QEMU Guest Agent System Extension
+        - op: replace
+          path: /machine/install
+          value:
+            extensions:
+              - image: registry.home.mirceanton.com/ghcr.io/siderolabs/qemu-guest-agent:10.1.2
+
+        # Disable predictable network interface names
+        - op: add
+          path: /machine/install/extraKernelArgs
+          value:
+            - net.ifnames=0
+
+        # Configure static VIP for control plane nodes + VIP IP for API server
+        - op: add
+          path: /machine/network/interfaces
+          value:
+            - interface: eth0
+              dhcp: false
+              vip: {ip: 10.0.0.30}
+
+        # Configure cloud provider and Talos CCM
+        - op: add
+          path: /machine/kubelet/extraArgs
+          value:
+            cloud-provider: external
+        - op: add
+          path: /cluster/externalCloudProvider
+          value:
+            enabled: true
+            manifests:
+              - https://raw.githubusercontent.com/siderolabs/talos-cloud-controller-manager/main/docs/deploy/cloud-controller-manager.ymlhttps://raw.githubusercontent.com/siderolabs/talos-cloud-controller-manager/refs/heads/main/docs/deploy/cloud-controller-manager-daemonset.yml
+        - op: add
+          path: /machine/features/kubernetesTalosAPIAccess
+          value:
+            enabled: true
+            allowedRoles: ["os:reader"]
+            allowedKubernetesNamespaces: ["kube-system"]

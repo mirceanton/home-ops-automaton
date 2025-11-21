@@ -19,5 +19,12 @@ terraform {
   }
 }
 
-provider "proxmox" {}
-provider "onepassword" {}
+provider "proxmox" {
+  endpoint = var.proxmox_endpoint
+  username = var.proxmox_username
+  password = var.proxmox_password
+  insecure = var.proxmox_insecure
+}
+provider "onepassword" {
+  service_account_token = var.op_service_account_token
+}

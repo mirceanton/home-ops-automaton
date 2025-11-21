@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-home-ops
+spec:
+  path: ./apps/cluster-home-ops/cluster
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-automaton
+    namespace: flux-system
+
+  interval: 1h
+  prune: true
+  wait: false
+  targetNamespace: cluster-home-ops
+
+  dependsOn:
+    - name: capi-provider-proxmox
+      namespace: capi-provider-proxmox
+    - name: capi-provider-talos
+      namespace: capi-provider-talos
+    - name: capi-provider-helm
+      namespace: capi-provider-helm

@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_user" "capmox" {
   acl {
     path      = "/"
     propagate = true
-    role_id   = "PVEVMAdmin"
+    role_id   = "Administrator"
   }
 }
 
@@ -23,7 +23,7 @@ resource "proxmox_virtual_environment_user_token" "capmox_capi" {
   user_id               = proxmox_virtual_environment_user.capmox.user_id
   token_name            = "capi"
   comment               = "Managed by Terraform - Cluster API automation token"
-  privileges_separation = true
+  privileges_separation = false
 }
 
 
@@ -32,33 +32,38 @@ resource "proxmox_virtual_environment_user_token" "capmox_capi" {
 # =================================================================================================
 data "onepassword_vault" "vault" { name = var.op_vault_name }
 resource "onepassword_item" "capmox_credentials" {
-  title    = "CapMox Credentials"
-  vault    = data.onepassword_vault.vault.uuid
+  title = "CapMox Credentials"
+  vault = data.onepassword_vault.vault.uuid
+
   category = "login"
-
-  section {
-    label = "Credentials"
-
-    field {
-      label = "username"
-      type  = "STRING"
-      value = proxmox_virtual_environment_user.capmox.user_id
-    }
-
-    field {
-      label = "password"
-      type  = "CONCEALED"
-      value = random_password.capmox_user_password.result
-    }
-  }
+  username = proxmox_virtual_environment_user.capmox.user_id
+  password = random_password.capmox_user_password.result
 
   section {
     label = "Automation"
 
     field {
-      label = "api token"
+      label = "proxmox url"
+      type  = "STRING"
+      value = var.proxmox_endpoint
+    }
+
+    field {
+      label = "token name"
+      type  = "STRING"
+      value = proxmox_virtual_environment_user_token.capmox_capi.token_name
+    }
+
+    field {
+      label = "api token full"
       type  = "CONCEALED"
       value = proxmox_virtual_environment_user_token.capmox_capi.value
+    }
+
+    field {
+      label = "api token secret"
+      type  = "CONCEALED"
+      value = split("=", proxmox_virtual_environment_user_token.capmox_capi.value)[1]
     }
   }
 

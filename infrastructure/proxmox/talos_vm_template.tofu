@@ -7,6 +7,7 @@ resource "proxmox_virtual_environment_vm" "talos_template" {
   tags        = ["talos-${var.talos_version}", "template", "capi"]
   template    = true
   machine     = "q35"
+  on_boot     = false
 
   operating_system { type = "l26" }
   agent {
@@ -31,22 +32,17 @@ resource "proxmox_virtual_environment_vm" "talos_template" {
   scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = var.proxmox_template_datastore
-    size         = "4" # GB
+    size         = "20"
     interface    = "scsi0"
     file_format  = "raw"
-  }
-
-  # Talos ISO
-  cdrom {
-    file_id   = proxmox_virtual_environment_download_file.talos_iso.id
-    interface = "ide0"
+    file_id      = proxmox_virtual_environment_download_file.talos_disk_image.id
   }
 
   network_device {
     bridge = var.proxmox_template_network_bridge
   }
 
-  vga { type = "serial0" }
+  vga { type = "virtio" }
   serial_device {}
 
   lifecycle {

@@ -1,3 +1,27 @@
+variable "proxmox_endpoint" {
+  description = "URL of the Proxmox VE API endpoint."
+  type        = string
+}
+variable "proxmox_username" {
+  description = "Username for Proxmox VE API authentication."
+  type        = string
+}
+variable "proxmox_password" {
+  description = "Password for Proxmox VE API authentication."
+  type        = string
+  sensitive   = true
+}
+variable "proxmox_insecure" {
+  description = "Whether to skip TLS verification for Proxmox VE API."
+  type        = bool
+  default     = false
+}
+variable "op_service_account_token" {
+  description = "1Password service account token for authentication."
+  type        = string
+  sensitive   = true
+}
+
 # =================================================================================================
 # 1Password Variables
 # =================================================================================================

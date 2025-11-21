@@ -1,0 +1,31 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: capi-provider-proxmox
+spec:
+  path: ./apps/capi-provider-proxmox/provider
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-automaton
+    namespace: flux-system
+
+  interval: 1h
+  prune: true
+  wait: true
+  targetNamespace: capi-provider-proxmox
+
+  dependsOn:
+    - name: capi-operator
+      namespace: capi-operator
+
+  healthChecks:
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: InfrastructureProvider
+      name: proxmox
+      namespace: capi-provider-proxmox
+  healthCheckExprs:
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: InfrastructureProvider
+      current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+      inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False')
