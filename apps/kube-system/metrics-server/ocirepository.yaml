@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: metrics-server
 spec:
-  url: oci://registry.home.mirceanton.com/ghcr.io/home-operations/charts-mirror/metrics-server
+  url: oci://ghcr.io/home-operations/charts-mirror/metrics-server
   interval: 15m
   ref: {tag: 3.13.0}
 

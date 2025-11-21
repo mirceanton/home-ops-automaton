@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: gha-runner-scale-set
 spec:
-  url: oci://registry.home.mirceanton.com/ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+  url: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
   interval: 15m
   ref: {tag: 0.13.0}
 

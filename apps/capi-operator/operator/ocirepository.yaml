@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: cluster-api-operator
 spec:
-  url: oci://registry.home.mirceanton.com/ghcr.io/home-operations/charts-mirror/cluster-api-operator
+  url: oci://ghcr.io/home-operations/charts-mirror/cluster-api-operator
   interval: 15m
   ref: {tag: 0.24.0}
 
