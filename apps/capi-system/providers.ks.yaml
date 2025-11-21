@@ -10,9 +10,10 @@ spec:
     name: home-ops-automaton
     namespace: flux-system
 
-  interval: 1h
+  interval: 10m
   prune: true
   wait: true
+  timeout: 5m
   targetNamespace: capi-system
 
   dependsOn:
@@ -20,11 +21,20 @@ spec:
       namespace: capi-operator
 
   healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: capi-controller-manager
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: CoreProvider
+      name: cluster-api
       namespace: capi-system
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: capi-ipam-in-cluster-controller-manager
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: IPAMProvider
+      name: in-cluster
       namespace: capi-system
+  healthCheckExprs:
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: CoreProvider
+      current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+      inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False')
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: IPAMProvider
+      current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+      inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False')

@@ -20,11 +20,20 @@ spec:
       namespace: capi-operator
 
   healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: cabpt-controller-manager
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: BootstrapProvider
+      name: talos
       namespace: capi-provider-talos
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: cacppt-controller-manager
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: ControlPlaneProvider
+      name: talos
       namespace: capi-provider-talos
+  healthCheckExprs:
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: BootstrapProvider
+      current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+      inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False')
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: ControlPlaneProvider
+      current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+      inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False')

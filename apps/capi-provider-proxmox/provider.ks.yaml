@@ -20,7 +20,12 @@ spec:
       namespace: capi-operator
 
   healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: capmox-controller-manager
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: InfrastructureProvider
+      name: proxmox
       namespace: capi-provider-proxmox
+  healthCheckExprs:
+    - apiVersion: operator.cluster.x-k8s.io/v1alpha2
+      kind: InfrastructureProvider
+      current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+      inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False')
