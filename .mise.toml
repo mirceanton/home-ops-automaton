@@ -18,6 +18,9 @@ terragrunt = "latest"
 opentofu = "1"
 op = "latest"
 
+# Ansible Stuff
+"pipx:ansible-core" = "latest"
+
 # Misc Tools
 task = "3"
 sops = "3"
