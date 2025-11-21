@@ -12,8 +12,8 @@ spec:
 
   deployment:
     replicas: 1 #! TODO: Set to 2 or more when adding more nodes
-    # affinity:
-    #   podAntiAffinity:
+    affinity:
+      podAntiAffinity: {}
     #     requiredDuringSchedulingIgnoredDuringExecution:
     #       - labelSelector:
     #           matchExpressions:
