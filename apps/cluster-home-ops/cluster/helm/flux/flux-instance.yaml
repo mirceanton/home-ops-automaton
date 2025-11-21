@@ -17,7 +17,7 @@ spec:
     waitForJobs: true
 
   # Helm Release Info
-  releaseName: flux-operator
+  releaseName: flux-instance
   namespace: flux-system
 
   # Helm Chart Source
