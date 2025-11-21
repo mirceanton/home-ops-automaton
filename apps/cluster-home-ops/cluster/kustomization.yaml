@@ -6,3 +6,4 @@ resources:
   - ./home-ops.cluster.yaml
   - ./controlplane
   - ./workers
+  - ./helm
