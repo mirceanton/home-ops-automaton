@@ -21,10 +21,8 @@ spec:
   namespace: flux-system
 
   # Helm Chart Source
-  repoURL: oci://registry.home.mirceanton.com/ghcr.io/controlplaneio-fluxcd/charts/flux-instance
-  chartName: flux-operator
-
-  # renovate: datasource=docker registry=ghcr.io/controlplaneio-fluxcd/charts/flux-instance
+  repoURL: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance
   version: v0.33.0
+  chartName: flux-operator
 
   valuesTemplate: ""
