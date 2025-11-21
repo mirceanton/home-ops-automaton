@@ -2,9 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-home-ops
+  name: capi-helm-proxies
 spec:
-  path: ./apps/cluster-home-ops/cluster
+  path: ./apps/capi-clusters/helm
   sourceRef:
     kind: GitRepository
     name: home-ops-automaton
@@ -13,7 +13,7 @@ spec:
   interval: 1h
   prune: true
   wait: false
-  targetNamespace: cluster-home-ops
+  targetNamespace: capi-clusters
 
   dependsOn:
     - name: capi-provider-proxmox
