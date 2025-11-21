@@ -13,4 +13,5 @@ spec:
 
   interval: 10m
   prune: true
+  wait: false
   targetNamespace: kube-system

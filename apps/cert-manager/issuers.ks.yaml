@@ -10,8 +10,10 @@ spec:
     name: home-ops-automaton
     namespace: flux-system
 
-  interval: 1h
+  interval: 10m
   prune: true
+  wait: true
+  timeout: 5m
   targetNamespace: cert-manager
 
   dependsOn:

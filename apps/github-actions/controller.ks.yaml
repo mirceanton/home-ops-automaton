@@ -11,8 +11,9 @@ spec:
     name: home-ops-automaton
     namespace: flux-system
 
-  interval: 1h
+  interval: 10m
   prune: true
+  wait: true
   targetNamespace: github-actions
 
   dependsOn:
