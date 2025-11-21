@@ -4,6 +4,4 @@ kind: Kustomization
 namespace: capi-provider-helm
 
 resources:
-  - ./namespace.yaml
-  - ./provider.ks.yaml
-  - ./templates.ks.yaml
+  - ./flux/

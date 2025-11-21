@@ -1,0 +1,29 @@
+---
+apiVersion: addons.cluster.x-k8s.io/v1alpha1
+kind: HelmChartProxy
+metadata:
+  name: flux-operator
+spec:
+  # Labels required on the target clusters to install this Helm chart
+  clusterSelector:
+    matchLabels:
+      flux-bootstrap: "enabled"
+
+  # Helm Install Options
+  options:
+    install:
+      createNamespace: true
+    waitForJobs: true
+
+  # Helm Release Info
+  releaseName: flux-operator
+  releaseNamespace: flux-system
+
+  # Helm Chart Source
+  repoURL: oci://registry.home.mirceanton.com/ghcr.io/controlplaneio-fluxcd/charts
+  chartName: flux-operator
+
+  # renovate: datasource=docker registry=ghcr.io/controlplaneio-fluxcd/charts
+  version: v0.33.0
+
+  valuesTemplate: {}

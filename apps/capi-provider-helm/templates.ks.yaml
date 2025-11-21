@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: capi-provider-helm-templates
+spec:
+  path: ./apps/capi-provider-helm/templates
+  sourceRef:
+    kind: GitRepository
+    name: home-ops-automaton
+    namespace: flux-system
+
+  interval: 10m
+  prune: true
+  wait: true
+  targetNamespace: capi-provider-helm
+
+  dependsOn:
+    - name: capi-provider-helm
+      namespace: capi-provider-helm
