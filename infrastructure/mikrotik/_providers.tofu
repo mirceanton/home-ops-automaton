@@ -6,7 +6,7 @@ terraform {
     }
     onepassword = {
       source  = "1Password/onepassword"
-      version = "3.0.2"
+      version = "3.1.1"
     }
     random = {
       source  = "hashicorp/random"
