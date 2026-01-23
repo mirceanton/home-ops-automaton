@@ -12,7 +12,7 @@ clusterctl = "latest"
 
 # Talos Stuff
 "aqua:talosctl" = "1.12.1"
-"aqua:talhelper" = "3.1.1"
+"aqua:talhelper" = "3.1.2"
 
 # Terraform Stuff
 terragrunt = "latest"
