@@ -28,7 +28,7 @@ spec:
           path: /machine/install
           value:
             extensions:
-              - image: ghcr.io/siderolabs/qemu-guest-agent:10.2.0
+              - image: ghcr.io/siderolabs/qemu-guest-agent:10.2.1
 
         # Disable predictable network interface names
         - op: add
