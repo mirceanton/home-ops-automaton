@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
-  - github.com/fluxcd/flux2/manifests/install?ref=v2.7.5
+  - github.com/fluxcd/flux2/manifests/install?ref=v2.8.0
   - ./sops-age.secret.yaml
 
 patches:
