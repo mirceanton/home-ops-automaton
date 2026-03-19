@@ -11,7 +11,7 @@ SOPS_AGE_KEY_FILE = '{{config_root}}/age.key'
 clusterctl = "latest"
 
 # Talos Stuff
-"aqua:talosctl" = "1.12.5"
+"aqua:talosctl" = "1.12.6"
 "aqua:talhelper" = "3.1.6"
 
 # Terraform Stuff
